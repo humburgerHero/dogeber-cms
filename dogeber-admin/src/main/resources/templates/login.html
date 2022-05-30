@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Dogeber Service CMS</title>
+    <meta name="description" content="Dogeber Service CMS">
+    <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link href="../static/css/font-awesome.min.css" th:href="@{/css/font-awesome.min.css}" rel="stylesheet"/>
+    <link href="../static/css/style.min.css" th:href="@{/css/style.min.css}" rel="stylesheet"/>
+    <link href="../static/css/login.min.css" th:href="@{/css/login.min.css}" rel="stylesheet"/>
+    <link href="../static/dogeber/css/dogeber-ui.css" th:href="@{/dogeber/css/dogeber-ui.css?v=4.7.3}" rel="stylesheet"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="shortcut icon" href="../static/favicon.ico" th:href="@{favicon.ico}"/>
+    <style type="text/css">label.error { position:inherit;  }</style>
+    <script>
+        if(window.top!==window.self){alert('no login or time out, please logging again');window.top.location=window.location};
+    </script>
+</head>
+<body class="signin">
+<div class="signinpanel">
+    <div class="row">
+        <div class="col-sm-7">
+            <div class="signin-info">
+                <div class="logopanel m-b">
+                    <h1><img alt="[ Dogeber Service CMS ]" src="../static/dogeber.png" th:src="@{/dogeber.png}" style="width: 100px;"></h1>
+                </div>
+                <div class="m-b"></div>
+                <h4>Dogeber Service CMS</strong></h4>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <form id="signupForm" autocomplete="off">
+                <h4 class="no-margins">Login：</h4>
+                <p class="m-t-md">Dogeber Forever</p>
+                <input type="text"     name="username" class="form-control uname"     placeholder="username" value=""    />
+                <input type="password" name="password" class="form-control pword"     placeholder="password"   value="" />
+                <div class="row m-t" th:if="${captchaEnabled==true}">
+                    <div class="col-xs-6">
+                        <input type="text" name="validateCode" class="form-control code" placeholder="" maxlength="5" />
+                    </div>
+                    <div class="col-xs-6">
+                        <a href="javascript:void(0);" title="change verification code">
+                            <img th:src="@{/captcha/captchaImage(type=${captchaType})}" class="imgcode" width="85%"/>
+                        </a>
+                    </div>
+                </div>
+                <div class="checkbox-custom" th:if="${isRemembered}" th:classappend="${captchaEnabled==false} ? 'm-t'">
+                    <input type="checkbox" id="rememberme" name="rememberme"> <label for="rememberme">remember me</label>
+                </div>
+                <button class="btn btn-success btn-block" id="btnSubmit" data-loading="Logging...">login</button>
+            </form>
+        </div>
+    </div>
+    <div class="signup-footer">
+        <div class="pull-left">
+            Copyright © 2022-2024 Dogeber Service.vip All Rights Reserved. <br>
+        </div>
+    </div>
+</div>
+<script th:inline="javascript"> var ctx = [[@{/}]]; var captchaType = [[${captchaType}]]; </script>
+<!--[if lte IE 8]><script>window.location.href=ctx+'html/ie.html';</script><![endif]-->
+
+<script src="../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+<script src="../static/ajax/libs/validate/jquery.validate.min.js" th:src="@{/ajax/libs/validate/jquery.validate.min.js}"></script>
+<script src="../static/ajax/libs/layer/layer.min.js" th:src="@{/ajax/libs/layer/layer.min.js}"></script>
+<script src="../static/ajax/libs/blockUI/jquery.blockUI.js" th:src="@{/ajax/libs/blockUI/jquery.blockUI.js}"></script>
+<script src="../static/dogeber/js/dogeber-ui.js" th:src="@{/dogeber/js/dogeber-ui.js}"></script>
+<script src="../static/dogeber/login.js" th:src="@{/dogeber/login.js}"></script>
+</body>
+</html>

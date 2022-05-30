@@ -1,0 +1,139 @@
+# Config
+dogeber:
+
+  name: Dogeber
+
+  version: 4.7.3
+  # copyrightYear
+  copyrightYear: 2022
+  # demo open
+  demoEnabled: true
+  # upload path（ ex: Windows D:/dogeber/uploadPath，Linux /home/dogeber/uploadPath）
+  profile: D:/dogeber/uploadPath
+  #
+  addressEnabled: false
+
+# dev config
+server:
+  # 80
+  port: 80
+  servlet:
+    #
+    context-path: /
+  tomcat:
+    # tomcat URI
+    uri-encoding: UTF-8
+    # 100
+    accept-count: 1000
+    threads:
+      # tomcat max thread，default200
+      max: 800
+      # Tomcat init threads default 10
+      min-spare: 100
+ 
+# log config
+logging:
+  level:
+    com.dogeber: debug
+    org.springframework: warn
+
+# user config
+user:
+  password:
+    # err pwd ${maxRetryCount}times locked
+    maxRetryCount: 5
+
+# Spring
+spring:
+  #
+  thymeleaf:
+    mode: HTML
+    encoding: utf-8
+    #
+    cache: false
+  #
+  messages:
+    # i18n
+    basename: static/i18n/messages
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  profiles: 
+    active: druid
+  # file upload
+  servlet:
+     multipart:
+       # single file
+       max-file-size:  10MB
+       # file total size
+       max-request-size:  20MB
+  # service config
+  devtools:
+    restart:
+      # hot enabled
+      enabled: true
+
+# MyBatis
+mybatis:
+    typeAliasesPackage: com.dogeber.**.domain
+    mapperLocations: classpath*:mapper/**/*Mapper.xml
+    configLocation: classpath:mybatis/mybatis-config.xml
+
+# PageHelper分页插件
+pagehelper: 
+  helperDialect: mysql
+  supportMethodsArguments: true
+  params: count=countSql 
+
+# Shiro
+shiro:
+  user:
+    # login url
+    loginUrl: /login
+
+    unauthorizedUrl: /unauth
+
+    indexUrl: /index
+
+    captchaEnabled: true
+
+    captchaType: math
+  cookie:
+    # set Cookie的DOMAIN default empty，
+    domain: 
+    # set cookie path
+    path: /
+    # set HttpOnly
+    httpOnly: true
+    # set Cookie expiretime (day)
+    maxAge: 30
+    #
+    cipherKey: 
+  session:
+    # SessionexpireTime ，-1 no ttl
+    expireTime: 30
+    #
+    dbSyncPeriod: 1
+    #
+    validationInterval: 10
+    #
+    maxSession: -1
+    #
+    kickoutAfter: false
+  rememberMe:
+    # 是否开启记住我
+    enabled: true
+
+# XSS
+xss: 
+  #
+  enabled: true
+  #
+  excludes: /system/notice/*
+  # url patterns
+  urlPatterns: /system/*,/monitor/*,/tool/*
+
+# Swagger config
+swagger:
+  # turn on swagger
+  enabled: true

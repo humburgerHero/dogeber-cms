@@ -1,0 +1,56 @@
+spring:
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driverClassName: com.mysql.cj.jdbc.Driver
+        druid:
+            # master
+            master:
+                url: jdbc:mysql://localhost:3306/doger?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+                username: root
+                password: zyh1994!!!
+            # slave
+            slave:
+                # turn on slave
+                enabled: false
+                url: 
+                username: 
+                password: 
+
+            initialSize: 5
+
+            minIdle: 10
+
+            maxActive: 20
+
+            maxWait: 60000
+
+            timeBetweenEvictionRunsMillis: 60000
+
+            minEvictableIdleTimeMillis: 300000
+
+            maxEvictableIdleTimeMillis: 900000
+
+            validationQuery: SELECT 1 FROM DUAL
+            testWhileIdle: true
+            testOnBorrow: false
+            testOnReturn: false
+            webStatFilter: 
+                enabled: true
+            statViewServlet:
+                enabled: true
+                # white user
+                allow:
+                url-pattern: /druid/*
+                # super admin
+                login-username: dogeber
+                login-password: superAdmin
+            filter:
+                stat:
+                    enabled: true
+                    # slow SQL record
+                    log-slow-sql: true
+                    slow-sql-millis: 1000
+                    merge-sql: true
+                wall:
+                    config:
+                        multi-statement-allow: true

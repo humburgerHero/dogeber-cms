@@ -1,0 +1,2 @@
+Application Version: ${dogeber.version}
+Spring Boot Version: ${spring-boot.version}
